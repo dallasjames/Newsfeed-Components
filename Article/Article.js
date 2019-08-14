@@ -105,12 +105,13 @@ const data = [
 */
 
 let articles = document.querySelector('.articles')
+
 function articleMaker(cb){
   let i;
   for (i = 0; i < data.length; i++) {
     let div = document.createElement('div');
     articles.appendChild(div);
-    div.setAttribute('class', 'articles');
+    div.setAttribute('class', 'article');
     let titles = document.createElement('h2')
     titles.textContent = cb[i].title;
     div.appendChild(titles);
@@ -124,7 +125,7 @@ function articleMaker(cb){
     P3.textContent = cb[i].thirdParagraph;
     div.appendChild(P3);
     let btn = document.createElement('span');
-    btn.textContent = 'button';
+    btn.textContent = 'expand';
     btn.setAttribute('class', 'expandButton');
     div.appendChild(btn);
   };
@@ -133,9 +134,23 @@ function articleMaker(cb){
 articleMaker(data);
 
 //  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-btn.addEventListener('click' )
+let button = document.querySelectorAll('.expandButton')
+
+let article = document.querySelectorAll('.article')
+
+for (let i = 0; i < button.length; i++) {
+  button[i].addEventListener('click', () => {
+  button[i].textContent = 'open';
+  article[i].classList.toggle('article-open');
+  })
+};
+
 //  Step 3: return the entire component.
+
+console.log(button);
 
 //  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
-//  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+
+
+//  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new 
