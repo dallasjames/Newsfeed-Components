@@ -125,7 +125,7 @@ function articleMaker(cb){
     P3.textContent = cb[i].thirdParagraph;
     div.appendChild(P3);
     let btn = document.createElement('span');
-    btn.textContent = 'expand';
+    btn.textContent = 'open';
     btn.setAttribute('class', 'expandButton');
     div.appendChild(btn);
   };
@@ -140,7 +140,7 @@ let article = document.querySelectorAll('.article')
 
 for (let i = 0; i < button.length; i++) {
   button[i].addEventListener('click', () => {
-  button[i].textContent = 'open';
+  button[i].textContent = 'read';
   article[i].classList.toggle('article-open');
   })
 };
@@ -151,6 +151,23 @@ console.log(button);
 
 //  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
+function buttonCreator(buttonText){
+  const button = document.createElement('button');
 
+  button.textContent = buttonText;
+
+  button.classList.add('button');
+
+  button.addEventListener('click', (e) => {
+      console.log('clicked!');
+  });
+
+  return button;
+}
+
+let newComponents = data.map((item) => {
+  let newButton = buttonCreator('hi');
+  return newButton;
+});
 
 //  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new 
