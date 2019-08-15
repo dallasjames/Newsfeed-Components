@@ -27,10 +27,7 @@ function menuCreator (arr) {
   menu.classList.add('menu')
   header.appendChild(menu);
   const ul = document.createElement('ul');
-  header.appendChild(ul);
-  // for (let i = 0; i < arr.length; i++){
-  //   ul.append(arr[i]);
-  // }
+  menu.appendChild(ul);
 }
 
 menuCreator(menuItems);
@@ -46,8 +43,14 @@ for (let i = 0; i < menuItems.length; i++) {
 
 // Step 3: Using a DOM selector, select the menu button currently on the DOM.
 
+let menuButton = document.querySelector('.menu-button');
+
 // Step 4: add a click handler to the menu button, when clicked it should toggle the class 'menu--open' on the menu itself
 
-// Step 5: return the menu component.
-
+menuButton.addEventListener('click', (event) => {
+  event.menuButton.classList.add('menu--open');
+  // Step 5: return the menu component.
+  return menuButton;
+});
 // Step 6: add the menu component to the DOM.
+menu.appendChild(menuButton);
