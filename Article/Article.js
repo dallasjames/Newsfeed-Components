@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New article',
+    date: 'August 15th 2019',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis 
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+
+    secondParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis 
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+
+    thirdParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis 
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
   }
 ];
 
@@ -102,13 +120,71 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
-
 */
+
+let articles = document.querySelector('.articles')
+
+function articleMaker(cb){
+  let i;
+  for (i = 0; i < data.length; i++) {
+    let div = document.createElement('div');
+    articles.appendChild(div);
+    div.setAttribute('class', 'article');
+    let titles = document.createElement('h2');
+    titles.textContent = cb[i].title;
+    div.appendChild(titles);
+    let date = document.createElement('p');
+    date.textContent = cb[i].date;
+    div.appendChild(date);
+    let P1 = document.createElement('p');
+    P1.textContent = cb[i].firstParagraph;
+    div.appendChild(P1);
+    let P2 = document.createElement('p');
+    P2.textContent = cb[i].secondParagraph;
+    div.appendChild(P2);
+    let P3 = document.createElement('p');
+    P3.textContent = cb[i].thirdParagraph;
+    div.appendChild(P3);
+    let btn = document.createElement('span');
+    btn.textContent = 'open';
+    btn.setAttribute('class', 'expandButton');
+    div.appendChild(btn);
+  };
+};
+
+articleMaker(data);
+
+//  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+let button = document.querySelectorAll('.expandButton')
+
+let article = document.querySelectorAll('.article')
+
+for (let i = 0; i < button.length; i++) {
+  button[i].addEventListener('click', () => {
+  button[i].textContent = 'read';
+  article[i].classList.toggle('article-open');
+  })
+};
+
+//  Step 3: return the entire component.
+
+console.log(button);
+
+//  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+
+function buttonCreator(buttonText){
+  const button = document.createElement('button');
+
+  button.textContent = buttonText;
+
+  button.addEventListener('click', (e) => {
+      console.log('clicked!');
+  });
+
+  return button;
+}
+
+let newComponents = data.map((item) => {
+  articles.appendChild(buttonCreator('hi'))
+  return button;
+});
